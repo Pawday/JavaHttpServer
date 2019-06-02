@@ -1,4 +1,4 @@
-package per.pawday.httpserver.http.components;
+package per.pawday.httpserver.http.components.header;
 
 
 /**
