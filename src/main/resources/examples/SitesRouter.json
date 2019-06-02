@@ -1,0 +1,12 @@
+[
+  {
+    "BaseDirectory": "base",
+    "DomainName": "localhost",
+    "ssl":
+    {
+      "use": false,
+      "keyStoreFile": "",
+      "doRedirect80": false
+    }
+  }
+]

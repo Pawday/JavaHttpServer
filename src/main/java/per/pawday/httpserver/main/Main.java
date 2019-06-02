@@ -11,19 +11,19 @@ public class Main
 {
     public static void main(String[] args)
     {
-        File routerFile = new File("router.json");
+        File routerFile = new File("SitesRouter.json");
         if ( !routerFile.exists() )
         {
             if (routerFile.canWrite() && routerFile.canRead())
             {
                 System.out.print(ConsoleColors.RED);
-                System.out.println("Permission denied: no permission to create and read file: \"router.json.\"");
+                System.out.println("Permission denied: no permission to create and read file: \"SitesRouter.json.\"");
                 System.out.print(ConsoleColors.RESET);
                 System.exit(-1);
             }
             else
             {
-                try(InputStreamReader stream = new InputStreamReader(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream("examples/router.json")), StandardCharsets.UTF_8);FileOutputStream fileOutputStream = new FileOutputStream(routerFile))
+                try(InputStreamReader stream = new InputStreamReader(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream("examples/SitesRouter.json")), StandardCharsets.UTF_8);FileOutputStream fileOutputStream = new FileOutputStream(routerFile))
                 {
                     routerFile.createNewFile();
 
@@ -36,11 +36,13 @@ public class Main
                 catch (IOException e)
                 {
                     System.out.print(ConsoleColors.RED);
-                    System.out.println("Error: error creating file \"router.json.\"");
+                    System.out.println("Error: error creating file \"SitesRouter.json.\"");
                     System.out.print(ConsoleColors.RESET);
                     System.exit(-1);
                 }
             }
         }
+
+
     }
 }
