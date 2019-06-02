@@ -41,4 +41,12 @@ public class Header
     {
         return this.key + ": " + value;
     }
+
+    /**
+     * @param value new value for this header
+     */
+    public void setValue(String value)
+    {
+        this.value = value;
+    }
 }
