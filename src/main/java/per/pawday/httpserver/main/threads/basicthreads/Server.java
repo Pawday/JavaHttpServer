@@ -1,4 +1,4 @@
-package per.pawday.httpserver.main.theads;
+package per.pawday.httpserver.main.threads.basicthreads;
 
 /**
  * The {@code: Server} class is the first main stream of the http server.

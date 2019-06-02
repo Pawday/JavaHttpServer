@@ -1,4 +1,4 @@
-package per.pawday.httpserver.main.theads;
+package per.pawday.httpserver.main.threads.basicthreads;
 
 /**
  * The {@code: Control} class is the main stream of the http server.
