@@ -5,7 +5,8 @@
     "ssl":
     {
       "use": false,
-      "keyStoreFile": "",
+      "PKCS12File": "",
+      "PKCS12FilePassword": "",
       "doRedirect80": false
     }
   }
