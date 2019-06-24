@@ -21,6 +21,8 @@ public class Server extends Thread
     private static ServerSocket basicSocket;
     private static ServerSocket sslSocket;
 
+
+
     @Override
     public void run()
     {

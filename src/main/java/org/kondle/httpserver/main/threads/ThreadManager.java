@@ -1,4 +1,4 @@
-package org.kondle.main.threads.tools;
+package org.kondle.main.threads;
 
 public class ThreadManager
 {

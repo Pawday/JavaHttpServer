@@ -3,7 +3,7 @@ package org.kondle.main;
 
 import org.kondle.main.threads.basicthreads.Control;
 import org.kondle.main.threads.basicthreads.Server;
-import org.kondle.main.threads.tools.ThreadManager;
+import org.kondle.main.threads.ThreadManager;
 import org.kondle.tools.console.ConsoleColors;
 
 
