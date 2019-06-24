@@ -1,8 +1,11 @@
-package per.pawday.httpserver.main;
+package org.kondle.main;
 
 
-import per.pawday.httpserver.main.threads.tools.ThreadManager;
-import per.pawday.httpserver.tools.console.ConsoleColors;
+import org.kondle.main.threads.basicthreads.Control;
+import org.kondle.main.threads.basicthreads.Server;
+import org.kondle.main.threads.tools.ThreadManager;
+import org.kondle.tools.console.ConsoleColors;
+
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -52,6 +55,14 @@ public class Main
             }
         }
 
+        Server server = Server.getInstance();
+        Control control = Control.getInstance();
+
+        ThreadManager.setServerThreadId(server.getId());
+        ThreadManager.setControlThreadId(control.getId());
+
+        server.start();
+        control.start();
 
     }
 }

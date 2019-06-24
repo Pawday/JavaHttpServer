@@ -1,4 +1,4 @@
-package per.pawday.httpserver.http.components.header;
+package org.kondle.http.components.header;
 
 import java.util.*;
 

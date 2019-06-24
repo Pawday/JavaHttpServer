@@ -1,4 +1,4 @@
-package per.pawday.httpserver.tools.console;
+package org.kondle.tools.console;
 
 public class ConsoleColors
 {
