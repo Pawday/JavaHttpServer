@@ -1,17 +1,17 @@
-package org.kondle.http.components.header;
+package org.kondle.httpserver.http.components.header;
 
 
 /**
- * The {@code Header} class is simple string format "key": "value"
+ * The {@code HttpHeader} class is simple string format "key": "value"
  */
 
-public class Header
+public class HttpHeader
 {
     /**
      * @param key
      * @param value
      */
-    public Header(String key,String value)
+    public HttpHeader(String key, String value)
     {
         this.key = key;
         this.value = value;
