@@ -1,10 +1,11 @@
-package org.kondle.main;
+package org.kondle.httpserver.main;
 
 
-import org.kondle.main.threads.basicthreads.Control;
-import org.kondle.main.threads.basicthreads.Server;
-import org.kondle.main.threads.ThreadManager;
-import org.kondle.tools.console.ConsoleColors;
+
+import org.kondle.httpserver.main.threads.basicthreads.Control;
+import org.kondle.httpserver.main.threads.basicthreads.Server;
+import org.kondle.httpserver.main.threads.ThreadManager;
+import org.kondle.httpserver.tools.console.ConsoleColors;
 
 
 import java.io.*;

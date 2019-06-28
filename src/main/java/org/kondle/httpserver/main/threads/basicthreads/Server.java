@@ -1,4 +1,4 @@
-package org.kondle.main.threads.basicthreads;
+package org.kondle.httpserver.main.threads.basicthreads;
 
 
 import java.net.ServerSocket;

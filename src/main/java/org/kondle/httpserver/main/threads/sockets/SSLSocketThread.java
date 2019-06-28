@@ -1,6 +1,6 @@
-package org.kondle.main.threads.sockets;
+package org.kondle.httpserver.main.threads.sockets;
 
-import org.kondle.main.threads.ThreadManager;
+import org.kondle.httpserver.main.threads.ThreadManager;
 
 public class SSLSocketThread extends Thread
 {

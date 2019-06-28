@@ -22,7 +22,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>org.kondle.main.Main</mainClass>
+                            <mainClass>org.kondle.httpserver.main.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -1,4 +1,4 @@
-package org.kondle.main.threads;
+package org.kondle.httpserver.main.threads;
 
 public class ThreadManager
 {
