@@ -1,5 +1,6 @@
 [
   {
+    "SiteAliace" : "default",
     "BaseDirectory": "base",
     "DomainName": "localhost",
     "ssl":
@@ -7,7 +8,7 @@
       "use": false,
       "PKCS12File": "",
       "PKCS12FilePassword": "",
-      "doRedirect80": false
+      "RedirectFromPort": 80
     }
   }
 ]

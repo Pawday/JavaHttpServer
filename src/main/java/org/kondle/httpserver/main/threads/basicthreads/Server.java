@@ -1,7 +1,10 @@
 package org.kondle.httpserver.main.threads.basicthreads;
 
 
+import org.kondle.httpserver.configs.routs.SitesRoute;
+
 import java.net.ServerSocket;
+import java.util.HashSet;
 
 /**
  * The {@code: Server} class is the first main stream of the http server.
@@ -20,6 +23,7 @@ public class Server extends Thread
 
     private static ServerSocket basicSocket;
     private static ServerSocket sslSocket;
+    private static HashSet<SitesRoute> sitesRoutesSet = new HashSet<>();
 
 
 

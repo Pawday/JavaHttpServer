@@ -14,15 +14,9 @@ import java.util.Objects;
 
 public class Main
 {
-    private static long mainThreadId;
-    public static long getMainThreadId()
-    {
-        return mainThreadId;
-    }
 
     public static void main(String[] args)
     {
-        mainThreadId = ThreadManager.getMainThreadId();
 
         File routerFile = new File("SitesRouter.json");
         if ( !routerFile.exists() )
