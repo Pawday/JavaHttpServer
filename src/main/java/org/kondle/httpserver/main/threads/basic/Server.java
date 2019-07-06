@@ -1,4 +1,4 @@
-package org.kondle.httpserver.main.threads.basicthreads;
+package org.kondle.httpserver.main.threads.basic;
 
 
 import org.kondle.httpserver.configs.routs.SitesRoute;
@@ -21,11 +21,9 @@ public class Server extends Thread
         return server;
     }
 
-    private static ServerSocket basicSocket;
-    private static ServerSocket sslSocket;
     private static HashSet<SitesRoute> sitesRoutesSet = new HashSet<>();
 
-
+    private static HashSet<ServerSocket> sockets = new HashSet<>();
 
     @Override
     public void run()

@@ -1,4 +1,4 @@
-package org.kondle.httpserver.main.threads.basicthreads;
+package org.kondle.httpserver.main.threads.basic;
 
 /**
  * The {@code: Control} class is the main stream of the http server.

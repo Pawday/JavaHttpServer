@@ -2,8 +2,8 @@ package org.kondle.httpserver.main;
 
 
 
-import org.kondle.httpserver.main.threads.basicthreads.Control;
-import org.kondle.httpserver.main.threads.basicthreads.Server;
+import org.kondle.httpserver.main.threads.basic.Control;
+import org.kondle.httpserver.main.threads.basic.Server;
 import org.kondle.httpserver.main.threads.ThreadManager;
 import org.kondle.httpserver.tools.console.ConsoleColors;
 
