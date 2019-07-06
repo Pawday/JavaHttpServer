@@ -7,6 +7,7 @@ public class SitesRoute
     private String siteAliace;
     private File baseDirectory;
     private String domainName;
+    private int port;
 
     public SSLParameters sslParameters;
 
