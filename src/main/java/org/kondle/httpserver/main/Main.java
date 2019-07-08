@@ -39,6 +39,8 @@ public class Main
                     {
                         fileOutputStream.write((char)b);
                     }
+                    System.out.println(ConsoleColors.GREEN + "Edit the file SitesRouter.json" + ConsoleColors.RESET);
+                    System.exit(0);
                 }
                 catch (IOException e)
                 {

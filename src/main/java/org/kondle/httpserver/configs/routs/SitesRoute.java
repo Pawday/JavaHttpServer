@@ -60,9 +60,9 @@ public class SitesRoute
                 {
                     this.pkcs12File = new File(object.getString("PKCS12File"));
                     if (!this.pkcs12File.exists())
-                        throw new FileNotFoundException(this.pkcs12File.getAbsolutePath() + " " + this.pkcs12File.getName() + " not found.");
+                        throw new FileNotFoundException(this.pkcs12File.getAbsolutePath() + " not found.");
                     if (!this.pkcs12File.isFile())
-                        throw new IllegalArgumentException(this.pkcs12File.getAbsolutePath() + " " + this.pkcs12File.getName() + " is not a file");
+                        throw new IllegalArgumentException(this.pkcs12File.getAbsolutePath() + " is not a file");
                 } else
                     throw new IllegalArgumentException("In the json object there is no parameter ssl.PKCS12File");
 
@@ -143,6 +143,22 @@ public class SitesRoute
         }
     }
 
+    public String getSiteAliace()
+    {
+        return siteAliace;
+    }
+    public File getBaseDirectory()
+    {
+        return baseDirectory;
+    }
+    public int getPort()
+    {
+        return port;
+    }
+    public String getDomainName()
+    {
+        return domainName;
+    }
 
     @Override
     public boolean equals(Object obj)
