@@ -1,5 +1,8 @@
 package org.kondle.httpserver.main.threads;
 
+import java.util.Iterator;
+import java.util.Set;
+
 public class ThreadManager
 {
     private static long mainThreadId;
@@ -34,6 +37,26 @@ public class ThreadManager
         }
     }
 
+    public static String[] getThreadNamesList()
+    {
+        String[] ret = new String[0];
+        if (Thread.currentThread().getId() == controlThreadId)
+        {
+            Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+            ret = new String[threadSet.size()];
+
+            Iterator<Thread> iterator = threadSet.iterator();
+
+            int i = 0;
+            while (iterator.hasNext())
+            {
+                Thread t = iterator.next();
+                ret[i] = t.getName() + " (id:" + t.getId() + ")";
+                i++;
+            }
+        }
+        return ret;
+    }
 
     public static long getServerThreadId() { return serverThreadId; }
     public static long getControlThreadId() { return controlThreadId; }
