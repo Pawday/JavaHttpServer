@@ -1,5 +1,9 @@
 package org.kondle.httpserver.http.components.reqline;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 public class HttpRequestLine
 {
 
@@ -17,6 +21,54 @@ public class HttpRequestLine
     private String httpVersion;
 
 
+
+    public HttpRequestLine(InputStream stream) throws HttpRequestLineException, IOException
+    {
+        InputStreamReader reader = new InputStreamReader(stream, StandardCharsets.UTF_8);
+        StringBuilder reqLine = new StringBuilder();
+        int b;
+
+        long limit = 1000;
+        long limitCounter = 0;
+
+        while ((b = stream.read()) != '\n')
+        {
+            if (limitCounter < limit)
+            {
+                reqLine.append((char)b);
+                limitCounter++;
+            } else throw new HttpRequestLineException("HTTP request line limit exceeded");
+        }
+
+        String[] reqLineArray = reqLine.toString().split(" ");
+
+        if (reqLineArray.length != 3)
+        {
+            throw new HttpRequestLineException("illegal HTTP request");
+        }
+
+
+        String method = reqLineArray[0];
+
+
+        if (method.toString().equals("GET")) this.httpReqMethod = HttpReqMethod.GET;
+        if (method.toString().equals("POST")) this.httpReqMethod =HttpReqMethod.POST;
+        if (method.toString().equals("PUT")) this.httpReqMethod = HttpReqMethod.PUT;
+        if (method.toString().equals("CUT")) this.httpReqMethod = HttpReqMethod.CUT;
+        if (method.toString().equals("DELETE")) this.httpReqMethod = HttpReqMethod.DELETE;
+
+
+        if (this.httpReqMethod == null)
+        {
+            stream.close();
+            throw new HttpRequestLineException("illegal HTTP request method: \"" + method  + "\"");
+        }
+
+        this.path = reqLineArray[1];
+        this.httpVersion = reqLineArray[2];
+
+
+    }
     public HttpReqMethod getHttpReqMethod()
     {
         return httpReqMethod;
@@ -29,9 +81,13 @@ public class HttpRequestLine
     {
         return httpVersion;
     }
-    public void setHttpVersion(String httpVersion)
-    {
-        this.httpVersion = httpVersion;
-    }
 
+}
+
+class HttpRequestLineException extends Exception
+{
+    public HttpRequestLineException(String message)
+    {
+        super(message);
+    }
 }
