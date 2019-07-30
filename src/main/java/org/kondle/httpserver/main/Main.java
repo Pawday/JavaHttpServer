@@ -2,6 +2,7 @@ package org.kondle.httpserver.main;
 
 
 
+import org.kondle.httpserver.log.Logger;
 import org.kondle.httpserver.main.threads.basic.Control;
 import org.kondle.httpserver.main.threads.basic.Server;
 import org.kondle.httpserver.main.threads.ThreadManager;
@@ -17,9 +18,10 @@ public class Main
 
     public static void main(String[] args)
     {
-
+        Thread.currentThread().setName("MAIN");
+        Logger.log("");
         File routerFile = new File("SitesRouter.json");
-        if ( !routerFile.exists() )
+        if (!routerFile.exists())
         {
             if (routerFile.canWrite() && routerFile.canRead())
             {
@@ -30,14 +32,14 @@ public class Main
             }
             else
             {
-                try(InputStreamReader stream = new InputStreamReader(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream("examples/SitesRouter.json")), StandardCharsets.UTF_8);FileOutputStream fileOutputStream = new FileOutputStream(routerFile))
+                try (InputStreamReader stream = new InputStreamReader(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream("examples/SitesRouter.json")), StandardCharsets.UTF_8); FileOutputStream fileOutputStream = new FileOutputStream(routerFile))
                 {
                     routerFile.createNewFile();
 
                     int b;
-                    while ((b = stream.read())!= -1)
+                    while ((b = stream.read()) != -1)
                     {
-                        fileOutputStream.write((char)b);
+                        fileOutputStream.write((char) b);
                     }
                     System.out.println(ConsoleColors.GREEN + "Edit the file SitesRouter.json" + ConsoleColors.RESET);
                     System.exit(0);
@@ -57,6 +59,9 @@ public class Main
 
         ThreadManager.setServerThreadId(server.getId());
         ThreadManager.setControlThreadId(control.getId());
+
+        server.setName("Server Thread");
+        control.setName("Control Thread");
 
         server.start();
         control.start();
