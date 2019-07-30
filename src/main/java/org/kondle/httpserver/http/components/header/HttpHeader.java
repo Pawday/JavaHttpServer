@@ -1,6 +1,8 @@
 package org.kondle.httpserver.http.components.header;
 
 
+import java.io.InputStream;
+
 /**
  * The {@code HttpHeader} class is simple string format "key": "value"
  */

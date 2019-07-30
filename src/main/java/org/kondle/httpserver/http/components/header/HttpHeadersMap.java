@@ -6,6 +6,11 @@ public class HttpHeadersMap implements Map<String,String>
 
     private LinkedList<HttpHeader> httpHeaderLinkedList = new LinkedList<HttpHeader>();
 
+    public void add(HttpHeader httpHeader)
+    {
+        httpHeaderLinkedList.add(httpHeader);
+    }
+
     @Override
     public int size()
     {
@@ -107,7 +112,7 @@ public class HttpHeadersMap implements Map<String,String>
         for (int i = 0; i < this.httpHeaderLinkedList.size(); i++)
         {
             if (i != this.httpHeaderLinkedList.size() - 1)
-                ret.append(this.httpHeaderLinkedList.get(i).toString()).append('\n');
+                ret.append(this.httpHeaderLinkedList.get(i).toString()).append("\r\n");
             else
                 ret.append(this.httpHeaderLinkedList.get(i).toString());
         }
