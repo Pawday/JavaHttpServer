@@ -5,10 +5,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.kondle.httpserver.configs.routs.SitesRoute;
+import org.kondle.httpserver.log.Logger;
+import org.kondle.httpserver.main.threads.secondary.ServerSocketListenerThread;
 import org.kondle.httpserver.tools.console.ConsoleColors;
 
 import java.io.*;
 import java.net.ServerSocket;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -43,6 +46,8 @@ public class Server extends Thread
 
     private static HashSet<ServerSocket> sockets = new HashSet<>();
 
+    private static ArrayList<ServerSocketListenerThread> serverSocketListenerThreads = new ArrayList<>();
+
     @Override
     public void run()
     {
@@ -65,7 +70,7 @@ public class Server extends Thread
                     File[] files = baseDirectory.listFiles();
                     for (File f : files)
                     {
-                        if (f.getName().equals("Router.JSON"))
+                        if (f.getName().equals("Router.json"))
                         {
                             hasRouterJSONFile = true;
                             break;
@@ -76,7 +81,7 @@ public class Server extends Thread
                     {
                         try
                         (
-                            InputStream res = ClassLoader.getSystemResourceAsStream("examples/Router.json");
+                            InputStream res = ClassLoader.getSystemResourceAsStream("resources/examples/Router.json");
                             FileOutputStream routerFileStream = new FileOutputStream(new File(baseDirectory.getAbsolutePath() + File.separator + "Router.json"));
                         )
                         {
@@ -85,15 +90,39 @@ public class Server extends Thread
                             {
                                 routerFileStream.write(b);
                             }
-                            System.out.println(ConsoleColors.GREEN + "Edit the file SitesRouter.json in " + baseDirectory.getAbsolutePath() + ConsoleColors.RESET);
+                            System.out.println(ConsoleColors.GREEN + "Edit the file Router.json in " + baseDirectory.getAbsolutePath() + ConsoleColors.RESET);
                         }
                     }
                 }
+
+
+                {
+                    boolean isFreePort = true;
+                    for (ServerSocket socket : sockets)
+                    {
+                        if (socket.getLocalPort() == route.getPort())
+                        {
+                            isFreePort = false;
+                            break;
+                        }
+                    }
+
+                    if (isFreePort) sockets.add(new ServerSocket(route.getPort()));
+                }
+
+
+            }
+
+            for (ServerSocket s : sockets)
+            {
+                ServerSocketListenerThread thread = new ServerSocketListenerThread(s);
+                thread.setName("SocketListener: Port " + s.getLocalPort());
+                thread.start();
             }
         }
         catch (Exception e)
         {
-            System.out.println(ConsoleColors.RED + e.getMessage());
+            Logger.log(e);
         }
     }
 

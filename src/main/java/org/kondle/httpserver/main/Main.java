@@ -32,7 +32,7 @@ public class Main
             }
             else
             {
-                try (InputStreamReader stream = new InputStreamReader(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream("examples/SitesRouter.json")), StandardCharsets.UTF_8); FileOutputStream fileOutputStream = new FileOutputStream(routerFile))
+                try (InputStreamReader stream = new InputStreamReader(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream("resources/examples/SitesRouter.json")), StandardCharsets.UTF_8); FileOutputStream fileOutputStream = new FileOutputStream(routerFile))
                 {
                     routerFile.createNewFile();
 
