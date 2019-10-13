@@ -5,6 +5,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.kondle.httpserver.configs.routs.SitesRoute;
+import org.kondle.httpserver.containers.ServerSocketsContainer;
+import org.kondle.httpserver.containers.SitesRoutersContainer;
 import org.kondle.httpserver.log.Logger;
 import org.kondle.httpserver.main.threads.secondary.ServerSocketListenerThread;
 import org.kondle.httpserver.tools.console.ConsoleColors;
@@ -42,9 +44,9 @@ public class Server extends Thread
         return server;
     }
 
-    private static HashSet<SitesRoute> sitesRoutesSet = new HashSet<>();
 
-    private static HashSet<ServerSocket> sockets = new HashSet<>();
+
+
 
     private static ArrayList<ServerSocketListenerThread> serverSocketListenerThreads = new ArrayList<>();
 
@@ -57,9 +59,9 @@ public class Server extends Thread
             SitesRoute[] routers = getSitesRoutes(new JSONArray(new JSONTokener(stream)));
             stream.close();
 
-            sitesRoutesSet.addAll(Arrays.asList(routers));
+            SitesRoutersContainer.sitesRoutesSet.addAll(Arrays.asList(routers));
 
-            Iterator<SitesRoute> sitesRouteIterator = sitesRoutesSet.iterator();
+            Iterator<SitesRoute> sitesRouteIterator = SitesRoutersContainer.sitesRoutesSet.iterator();
 
             while (sitesRouteIterator.hasNext())
             {
@@ -98,7 +100,7 @@ public class Server extends Thread
 
                 {
                     boolean isFreePort = true;
-                    for (ServerSocket socket : sockets)
+                    for (ServerSocket socket : ServerSocketsContainer.sockets)
                     {
                         if (socket.getLocalPort() == route.getPort())
                         {
@@ -107,13 +109,14 @@ public class Server extends Thread
                         }
                     }
 
-                    if (isFreePort) sockets.add(new ServerSocket(route.getPort()));
+
+                    if (isFreePort) ServerSocketsContainer.sockets.add(new ServerSocket(route.getPort()));
                 }
 
 
             }
 
-            for (ServerSocket s : sockets)
+            for (ServerSocket s : ServerSocketsContainer.sockets)
             {
                 ServerSocketListenerThread thread = new ServerSocketListenerThread(s);
                 thread.setName("SocketListener: Port " + s.getLocalPort());

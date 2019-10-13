@@ -56,17 +56,21 @@ public class Control extends Thread {
     {
         if (s.length > 0 && s[0].equals("thread"))
         {
-            if (s.length > 1)
-            switch (s[1])
+            if (s.length > 1) switch (s[1])
             {
                 case "list":
-                String[] threadList = ThreadManager.getThreadNamesList();
-                for (int i = 0; i < threadList.length; i++)
-                {
-                    System.out.println((i + 1) + ": " + threadList[i]);
-                }
-                break;
+                    String[] threadList = ThreadManager.getThreadNamesList();
+                    for (int i = 0; i < threadList.length; i++)
+                    {
+                        System.out.println((i + 1) + ": " + threadList[i]);
+                    }
+                    break;
             }
+        }
+
+        if (s.length > 0 && s[0].equals("stop"))
+        {
+            System.exit(0);
         }
     }
 

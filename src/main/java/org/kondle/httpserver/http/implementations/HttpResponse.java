@@ -4,7 +4,7 @@ import org.kondle.httpserver.http.components.header.HttpHeadersMap;
 
 import java.io.InputStream;
 
-public class HttpResponse extends HttpHeadersMap
+public class HttpResponse
 {
     private int status = 200;
     private HttpHeadersMap headers = new HttpHeadersMap();

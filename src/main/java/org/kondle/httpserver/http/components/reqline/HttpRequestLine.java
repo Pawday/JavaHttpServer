@@ -1,9 +1,13 @@
 package org.kondle.httpserver.http.components.reqline;
 
+import org.kondle.httpserver.http.exceptions.HttpRequestLineException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+
 public class HttpRequestLine
 {
 
@@ -28,6 +32,7 @@ public class HttpRequestLine
         StringBuilder reqLine = new StringBuilder();
         int b;
 
+        //TODO: export httpReqLineLengthLimit to configs
         long limit = 1000;
         long limitCounter = 0;
 
@@ -40,6 +45,8 @@ public class HttpRequestLine
             } else throw new HttpRequestLineException("HTTP request line limit exceeded");
         }
 
+        if (reqLine.charAt(reqLine.length() - 1) == '\r') reqLine.delete(reqLine.length() - 1,reqLine.length());
+
         String[] reqLineArray = reqLine.toString().split(" ");
 
         if (reqLineArray.length != 3)
@@ -47,7 +54,7 @@ public class HttpRequestLine
             throw new HttpRequestLineException("illegal HTTP request");
         }
 
-
+        System.out.println(Arrays.toString(reqLineArray));
         String method = reqLineArray[0];
 
 
@@ -82,12 +89,4 @@ public class HttpRequestLine
         return httpVersion;
     }
 
-}
-
-class HttpRequestLineException extends Exception
-{
-    public HttpRequestLineException(String message)
-    {
-        super(message);
-    }
 }

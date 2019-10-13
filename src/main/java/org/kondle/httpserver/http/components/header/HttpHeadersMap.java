@@ -1,8 +1,51 @@
 package org.kondle.httpserver.http.components.header;
 
+import sun.plugin.javascript.navig.Array;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
 import java.util.*;
 public class HttpHeadersMap implements Map<String,String>
 {
+
+
+    public HttpHeadersMap(InputStream in) throws IOException {
+        char[] endSeq = new char[]{'\r','\n','\r','\n'};
+        char[] instr = new char[]{' ',' ',' ',' '};
+        boolean end = false;
+
+
+        StringBuilder noSplicedHeaders = new StringBuilder();
+        while (!end)
+        {
+            instr[0] = instr[1];
+            instr[1] = instr[2];
+            instr[2] = instr[3];
+            instr[3] = (char) in.read();
+            noSplicedHeaders.append(instr[3]);
+            if (Arrays.equals(endSeq,instr)) end = true;
+        }
+
+        noSplicedHeaders.delete(noSplicedHeaders.length() - 4, noSplicedHeaders.length());
+
+        String[] headersArray = noSplicedHeaders.toString().split("\\r\\n");
+
+        for (String s : headersArray) {
+            String[] keyVal = s.split(": ");
+            add(new HttpHeader(keyVal[0], keyVal[1]));
+        }
+
+        Set<Entry<String, String>> set = this.entrySet();
+
+
+
+        System.out.println(this.get("Test"));
+    }
+
+
+    public HttpHeadersMap() {
+    }
 
     private LinkedList<HttpHeader> httpHeaderLinkedList = new LinkedList<HttpHeader>();
 
