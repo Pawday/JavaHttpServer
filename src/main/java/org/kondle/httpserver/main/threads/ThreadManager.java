@@ -60,4 +60,13 @@ public class ThreadManager
 
     public static long getServerThreadId() { return serverThreadId; }
     public static long getControlThreadId() { return controlThreadId; }
+
+    public static void stopById(long id)
+    {
+        if (Thread.currentThread().getId() == controlThreadId)
+        {
+            Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+            for (Thread nt : threadSet) if (nt.getId() == id) nt.stop();
+        }
+    }
 }

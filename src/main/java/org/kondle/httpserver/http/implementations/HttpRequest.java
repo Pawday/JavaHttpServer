@@ -13,24 +13,33 @@ public class HttpRequest
     public HttpRequestLine requestLine;
     private HttpHeadersMap headers;
     private boolean hasSize;
-    private long size;
+    private int size;
     private byte[] body;
+    private InputStream inputStream;
+    private boolean keepAlive;
 
     public HttpRequest(InputStream inputStream) throws IOException, HttpException
     {
         this.requestLine = new HttpRequestLine(inputStream);
         this.headers = new HttpHeadersMap(inputStream);
 
+        if (this.headers.containsKey("Connection"))
+            this.keepAlive = this.headers.get("Connection").equals("keep-alive");
+
         if (this.headers.containsKey("Content-Length"))
         {
             this.hasSize = true;
-            this.size = Long.parseLong(this.headers.get("Content-Length"));
+            this.size = Integer.parseInt(this.headers.get("Content-Length"));
+            this.body = new byte[this.size];
+            for (int i = 0; i < this.body.length; i++)
+                this.body[i] = (byte) inputStream.read();
         }
         else
         {
             this.size = 0;
             this.hasSize = false;
         }
+        //TODO: implement getInputStream and getBody (return text if has Size) {will need to consider the: Conn--: keep-alive}
     }
 
     public HttpHeadersMap getHeaders()

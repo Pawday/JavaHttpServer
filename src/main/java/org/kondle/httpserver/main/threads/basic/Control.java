@@ -54,23 +54,49 @@ public class Control extends Thread {
 
     private static void runCommand(String[] s)
     {
-        if (s.length > 0 && s[0].equals("thread"))
+        if (s.length != 0)
         {
-            if (s.length > 1) switch (s[1])
+            switch (s[0])
             {
-                case "list":
-                    String[] threadList = ThreadManager.getThreadNamesList();
-                    for (int i = 0; i < threadList.length; i++)
+                case "thread":
+                    if (s.length != 1) switch (s[1])
                     {
-                        System.out.println((i + 1) + ": " + threadList[i]);
+                        case "list":
+                            String[] threadList = ThreadManager.getThreadNamesList();
+                            for (int i = 0; i < threadList.length; i++)
+                            {
+                                System.out.println((i + 1) + ": " + threadList[i]);
+                            }
+                        break;
                     }
-                    break;
-            }
-        }
+                break;
+                case "get":
+                    if (s.length != 1) switch (s[1])
+                    {
+                        case "help":
+                            String helpOut =
+                                    "get\n" +
+                                    "  thread list\n";
+                            System.out.println(helpOut);
+                            break;
+                        case "thread":
+                            if (s.length != 2) switch (s[2])
+                            {
+                                case "list":
+                                    String[] threadList = ThreadManager.getThreadNamesList();
+                                    for (int i = 0; i < threadList.length; i++)
+                                    {
+                                        System.out.println((i + 1) + ": " + threadList[i]);
+                                    }
+                                break;
+                            }
+                    } else System.out.println("use: \"get help\"");
+                break;
 
-        if (s.length > 0 && s[0].equals("stop"))
-        {
-            System.exit(0);
+                case "stop":
+                    System.exit(0);
+                break;
+            }
         }
     }
 

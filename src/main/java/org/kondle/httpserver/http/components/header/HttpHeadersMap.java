@@ -1,10 +1,8 @@
 package org.kondle.httpserver.http.components.header;
 
-import sun.plugin.javascript.navig.Array;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader;
 import java.util.*;
 public class HttpHeadersMap implements Map<String,String>
 {
@@ -37,12 +35,7 @@ public class HttpHeadersMap implements Map<String,String>
         }
 
         Set<Entry<String, String>> set = this.entrySet();
-
-
-
-        System.out.println(this.get("Test"));
     }
-
 
     public HttpHeadersMap() {
     }

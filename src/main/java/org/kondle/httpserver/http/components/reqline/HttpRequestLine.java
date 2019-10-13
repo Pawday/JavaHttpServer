@@ -54,15 +54,14 @@ public class HttpRequestLine
             throw new HttpRequestLineException("illegal HTTP request");
         }
 
-        System.out.println(Arrays.toString(reqLineArray));
         String method = reqLineArray[0];
 
 
-        if (method.toString().equals("GET")) this.httpReqMethod = HttpReqMethod.GET;
-        if (method.toString().equals("POST")) this.httpReqMethod =HttpReqMethod.POST;
-        if (method.toString().equals("PUT")) this.httpReqMethod = HttpReqMethod.PUT;
-        if (method.toString().equals("CUT")) this.httpReqMethod = HttpReqMethod.CUT;
-        if (method.toString().equals("DELETE")) this.httpReqMethod = HttpReqMethod.DELETE;
+        if (method.equals("GET")) this.httpReqMethod = HttpReqMethod.GET;
+        if (method.equals("POST")) this.httpReqMethod =HttpReqMethod.POST;
+        if (method.equals("PUT")) this.httpReqMethod = HttpReqMethod.PUT;
+        if (method.equals("CUT")) this.httpReqMethod = HttpReqMethod.CUT;
+        if (method.equals("DELETE")) this.httpReqMethod = HttpReqMethod.DELETE;
 
 
         if (this.httpReqMethod == null)

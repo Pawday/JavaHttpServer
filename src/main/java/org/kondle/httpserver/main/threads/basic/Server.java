@@ -5,6 +5,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.kondle.httpserver.configs.routs.SitesRoute;
+import org.kondle.httpserver.containers.ServerSocketListenerThreadsContainer;
 import org.kondle.httpserver.containers.ServerSocketsContainer;
 import org.kondle.httpserver.containers.SitesRoutersContainer;
 import org.kondle.httpserver.log.Logger;
@@ -48,7 +49,6 @@ public class Server extends Thread
 
 
 
-    private static ArrayList<ServerSocketListenerThread> serverSocketListenerThreads = new ArrayList<>();
 
     @Override
     public void run()
@@ -119,6 +119,7 @@ public class Server extends Thread
             for (ServerSocket s : ServerSocketsContainer.sockets)
             {
                 ServerSocketListenerThread thread = new ServerSocketListenerThread(s);
+                ServerSocketListenerThreadsContainer.serverSocketListenerThreads.add(thread);
                 thread.setName("SocketListener: Port " + s.getLocalPort());
                 thread.start();
             }

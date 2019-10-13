@@ -1,6 +1,5 @@
 package org.kondle.httpserver.executors;
 
-import org.kondle.httpserver.containers.SitesRoutersContainer;
 import org.kondle.httpserver.http.exceptions.HttpException;
 import org.kondle.httpserver.http.implementations.HttpRequest;
 
@@ -11,7 +10,8 @@ import java.net.Socket;
 
 public class SocketExecutor
 {
-    public static void execute(Socket s) throws IOException, HttpException {
+    public static void execute(Socket s) throws IOException, HttpException
+    {
         InputStream is = s.getInputStream();
         OutputStream os = s.getOutputStream();
 
