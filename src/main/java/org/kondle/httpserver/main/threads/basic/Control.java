@@ -13,7 +13,7 @@ import java.util.Set;
 
 /**
  * The {@code: Control} class is the main stream of the http server.
- * In here server modules are loaded and started according the file SitesRouter.json
+ * This flow provides communication between the running server and the server administrator.
  */
 public class Control extends Thread {
 

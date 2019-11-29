@@ -21,7 +21,7 @@ import java.util.Iterator;
 
 /**
  * The {@code: Server} class is the first main stream of the http server.
- * This flow provides communication between the running server and the server administrator.
+ * In here server modules are loaded and started according the file SitesRouter.json
  */
 public class Server extends Thread
 {
@@ -70,14 +70,15 @@ public class Server extends Thread
                 {
                     boolean hasRouterJSONFile = false;
                     File[] files = baseDirectory.listFiles();
-                    for (File f : files)
-                    {
-                        if (f.getName().equals("Router.json"))
+                    if (files != null)
+                        for (File f : files)
                         {
-                            hasRouterJSONFile = true;
-                            break;
+                            if (f.getName().equals("Router.json"))
+                            {
+                                hasRouterJSONFile = true;
+                                break;
+                            }
                         }
-                    }
 
                     if (!hasRouterJSONFile)
                     {
@@ -88,6 +89,7 @@ public class Server extends Thread
                         )
                         {
                             int b;
+                            assert res != null;   // it always should be in the resource dir
                             while ((b = res.read()) != -1)
                             {
                                 routerFileStream.write(b);

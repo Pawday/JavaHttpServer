@@ -5,7 +5,7 @@
     "executor" :
     {
       "jarExecutorFile" : "example.jar",
-      "HttpModuleClass" : "com.package.modules.HttpModule"
+      "mainClass" : "com.package.modules.HttpModule"
     }
   }
 ]

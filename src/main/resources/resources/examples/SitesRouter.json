@@ -3,13 +3,6 @@
     "SiteAliace" : "default",
     "BaseDirectory": "base",
     "DomainName": "localhost",
-    "port": 80,
-    "ssl":
-    {
-      "use": false,
-      "PKCS12File": "",
-      "PKCS12FilePassword": "",
-      "RedirectFromPort": 80
-    }
+    "port": 80
   }
 ]
