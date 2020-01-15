@@ -1,0 +1,8 @@
+[
+  {
+    "SiteAliace" : "default",
+    "BaseDirectory": "base",
+    "DomainName": "localhost",
+    "port": 80
+  }
+]

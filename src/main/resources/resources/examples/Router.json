@@ -1,0 +1,11 @@
+[
+  {
+    "method" : "GET",
+    "path" : "",
+    "executor" :
+    {
+      "jarExecutorFile" : "example.jar",
+      "mainClass" : "com.package.modules.HttpModule"
+    }
+  }
+]
